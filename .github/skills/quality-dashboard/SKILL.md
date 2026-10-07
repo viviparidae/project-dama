@@ -9,9 +9,9 @@ description: "Coverage, quality trends, delivery metrics, and failure monitoring
 
 | 指標 | 収集元 | 目標 |
 | --- | --- | --- |
-| 型安全性 | `mypy --strict` | 0 件の型エラー |
-| 静的解析 | `ruff check .` | 警告・エラー 0 件 |
-| テスト | `pytest` | 全件成功 |
+| 型安全性 |  | 0 件の型エラー |
+| 静的解析 |  | 警告・エラー 0 件 |
+| テスト |  | 全件成功 |
 | カバレッジ | `coverage` | 変更対象の分岐を検証 |
 | DORA 4 Keys | CI / delivery log | 変化速度と安定性の把握 |
 | 負債 | issue / backlog | 重要な技術負債の可視化 |
