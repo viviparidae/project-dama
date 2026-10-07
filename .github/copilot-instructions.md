@@ -15,7 +15,7 @@
 
 
 ### 技術スタック概要
-- **静的解析・品質保証**: mypy (--strict), ruff / flake8, import-linter (Fitness Functions)
+- **静的解析・品質保証**: 
 - **ドキュメント・要件管理**: MkDocs, Mermaid, Gherkin / BDD, 実例マッピング (Example Mapping)
 - **メトリクス・可視化**: DORA 4 Keys, 動的品質ダッシュボード
 
