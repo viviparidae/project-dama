@@ -44,8 +44,8 @@ infrastructure -> adapters / usecases
 
 ## 5. 品質ゲート
 
-- mypy --strict で型安全性を確認する。
-- ruff / flake8 で静的解析を通す。
+- 型安全性を確認する。
+- 静的解析を通す。
 - `src/domain` と `src/usecases` の依存境界をレビュー対象にする。
 - 重要な設計判断は ADR として記録する。
 
