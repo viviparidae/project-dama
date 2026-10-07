@@ -51,7 +51,6 @@ infrastructure -> adapters / usecases
 
 ## 6. 要求追跡
 
-- `REQ-xxx`: 機能要求と非機能要求
 - `ADR-xxx`: 設計判断と一貫性の文書化
 - `C4 Model`: システム境界とコンポーネント関係の説明
 

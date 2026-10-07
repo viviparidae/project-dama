@@ -29,7 +29,26 @@ description: "Coverage, quality trends, delivery metrics, and failure monitoring
 - 変更量とテスト時間が増えた場合、品質データを再評価する。
 - 実行時間や回帰の増加は、設計境界や依存を見直す契機とする。
 
-## 4. 目標
+## 4. GitHub Pagesへの公開
+
+Push時の要求日本語化と品質ダッシュボードは、GitHub ActionsのPagesデプロイで公開する。
+
+```bash
+npm run requirements:humanize
+npx vitest run --coverage --coverage.thresholds.lines=0 --coverage.thresholds.functions=0 --coverage.thresholds.branches=0 --reporter=json --outputFile=coverage/vitest-results.json
+npm run dashboard:generate
+```
+
+- 要求ページ: `docs/pages/requirements/user-stories.ja.md`
+- ダッシュボード: `docs/pages/quality-dashboard/index.html`
+- GitHub Pagesの公開URL: `/requirements/user-stories.ja.md` と `/quality-dashboard/`
+- 元の要求YAMLと品質閾値は変更しない。
+- 要求ページとダッシュボードは同じGitHub Pages Artifactへ配置する。
+- テスト失敗時は公開ページを生成するが、品質状態を失敗として表示する。
+- カバレッジ閾値が未達の場合は、Pages配信を中断せず、ダッシュボードに現状値を表示する。
+- Pages用成果物は `docs/pages` を直接アップロードし、`destination` を指定しない。
+
+## 5. 目標
 
 - 品質の低下を早期に見える化し、継続的に改善する。
 - 要件・設計・実装・テストの追跡性を指標と結びつける。

@@ -1,5 +1,5 @@
 ---
-name: "CI Strategy"
+name: "ci-strategy"
 description: "Quality gates for static analysis, test execution, coverage checks, and delivery workflow in the DAMA project."
 ---
 
@@ -15,8 +15,8 @@ PR merge 前に以下を必須とする。
 
 ## 2. 検証階層
 
-1. コミットステージ: Lint, 型チェック, Unit/Component test を高速に実行する。
-2. 統合ステージ: DB, API, インフラ境界を含む統合テストを実行する。
+1. 高速テストステージ: Lint, 型チェック, Unit/Component test を高速に実行する。
+2. 低速テストステージ: DB, API, インフラ境界を含む統合テストを実行する。
 3. リリース判定: 品質ゲート失敗時はマージをブロックする。
 
 ## 3. DORA 4 Keys

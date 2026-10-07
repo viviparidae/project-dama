@@ -36,7 +36,7 @@ description: "Test-level strategy covering unit, component, integration, accepta
 - `sleep` を固定待機に使わない。
 - 乱数や時間に依存するテストは固定化する。
 - 外部依存はスタブまたはテスト用境界に閉じ込める。
-- 受け入れテストは `REQ-xxx` と対応させる。
+- 受け入れテストは `AC-xxx` と対応させる。
 
 ## 5. 不安定テスト防止
 

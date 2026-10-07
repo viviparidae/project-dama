@@ -44,33 +44,68 @@
 
 ---
 
-## 🛠 技術スタック (Tech Stack)
+## 🛠 技術スタック (Tech Stack) — MVP
 
-* **Frontend:** Flutter / React Native / Next.js
-* **Backend:** Node.js / Python / Firebase / Supabase
-* **Database:** PostgreSQL / Firestore
+* **Frontend:** Next.js（Web）※将来的に Flutter へ移行予定
+* **Backend / BaaS:** Supabase（認証 + REST/Realtime）
+* **Database:** PostgreSQL（Supabase 管理）
+* **アーキテクチャ:** Clean Architecture（ドメイン層をフレームワーク非依存に維持）
 
-*(※使用する技術に応じて変更してください)*
+---
+
+## 📄 要件ドキュメント
+
+* [ビジョン・スコープ定義書](docs/requirements/vision-scope.md)
+* [ユーザーストーリー・受け入れ基準 (YAML)](docs/requirements/user-stories.yaml)
 
 ---
 
 ## 💻 開発の進め方 (Getting Started)
 
 ### 前提条件 (Prerequisites)
-* Node.js (v18.x 以上) / Flutter SDK
+
+* Node.js 18.x 以上
+* npm
 * Git
 
 ### ローカル環境でのセットアップ (Installation)
 
+リポジトリをクローン済みであれば、プロジェクトルートから次のコマンドを実行します。
+
 ```bash
-# リポジトリのクローン
-git clone [https://github.com/your-account/dama-app.git](https://github.com/your-account/dama-app.git)
-
-# ディレクトリへの移動
-cd dama-app
-
 # 依存関係のインストール
-npm install  # または flutter pub get
+npm install
 
 # 開発サーバーの起動
-npm run dev  # または flutter run
+npm run dev
+```
+
+開発サーバーは次のURLで起動します。
+
+```text
+http://localhost:3000
+```
+
+### 本番ビルドと起動
+
+```bash
+# 本番ビルド
+npm run build
+
+# 本番サーバーの起動
+npm start
+```
+
+### 実行方法の注意
+
+本リポジトリにはNext.jsの`app`または`pages`ディレクトリが存在しないため、現在の状態では`npm run dev`を実行しても、ブラウザー画面を表示できません。フロントエンドのNext.js画面を追加後、上記のコマンドでアプリを起動できます。
+
+### 主なスクリプト
+
+```bash
+npm run dev       # 開発サーバーを起動
+npm run build     # 本番ビルド
+npm start         # 本番サーバーを起動
+npm run typecheck # TypeScriptの型検査
+npm run test      # テストスイートを実行
+```

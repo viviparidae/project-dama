@@ -12,40 +12,24 @@
 
 ## プロジェクト概要
 
+**Project Dama（プロジェクトダマ）** は、進化的ミスマッチ（Evolutionary Mismatch）を解消するヘルスケア＆習慣化Webアプリ。4機能領域（食行動・光・身体活動・デジタルデトックス）をMVPとして提供する。
 
+### 主要ドキュメント
+- 要件定義: `docs/requirements/vision-scope.md`, `docs/requirements/user-stories.yaml`
+- アーキテクチャ: `docs/architecture/c4-model.md`, `docs/architecture/adr/`
 
 ### 技術スタック概要
-- **静的解析・品質保証**: 
+- **フロントエンド**: Next.js 14+（App Router, TypeScript strict, Tailwind CSS）
+- **バックエンド / BaaS**: Supabase（認証 + PostgreSQL + Realtime）
+- **アーキテクチャ**: Clean Architecture（`src/domain/` → `src/usecases/` → `src/adapters/` → `src/infrastructure/`）
+- **静的解析・品質保証**: TypeScript strict, import-linter（依存方向の Fitness Function）
 - **ドキュメント・要件管理**: MkDocs, Mermaid, Gherkin / BDD, 実例マッピング (Example Mapping)
 - **メトリクス・可視化**: DORA 4 Keys, 動的品質ダッシュボード
 
-### ディレクトリ構成概略
-- `src/domain/`: 純粋なドメインモデル・ビジネスロジック（外部依存禁止）
-- `src/usecases/`: アプリケーションユースケースフロー
-- `src/adapters/` / `src/routes/`: Web API / CLI / リクエスト・レスポンス変換
-- `src/infrastructure/`: DB, 外部サービス連携、ファイルI/O
-- `tests/`: 8つのテストレベルに応じたテストスイート（unit, component, integration, e2e, acceptance）
-- `docs/`: 要件データ (`docs/requirements/`), 設計書 (`docs/architecture/`), ADR (`docs/adr/`), メトリクス履歴 (`docs/metrics/`)
-- `.github/skills/`: 各種設計・運用ガイドライン（Skills）
+### スキル役割インデックス
 
-## スキル一覧と参照タイミング (Skills Index)
-
-作業内容に応じて、以下の専門スキルを必ず参照すること。
-
-1. **要件定義・仕様確認**: `.github/skills/requirements-development/SKILL.md`
-   - 要求 ID (`REQ-xxx`) の付与、BRIEF 原則、実例マッピング (Example Mapping)、Given-When-Then 記述、品質シナリオ定義。
-2. **アーキテクチャ・設計・実装**: `.github/skills/architecture/SKILL.md`
-   - Clean Architecture の依存方向ルール、Fitness Functions、ADR、C4 Model。
-3. **テスト実装・検証方針**: `.github/skills/test-strategy/SKILL.md`
-   - 8 つのテストレベル（受け入れテストと E2E テストの分離）、テストピラミッド、Flaky 防止。
-4. **CI / デリバリー戦略**: `.github/skills/ci-strategy/SKILL.md`
-   - コミットステージと統合ステージの段階的検証、品質ゲート通過基準、DORA 4 Keys 測定、キャッシュ戦略。
-5. **動的品質ダッシュボード**: `.github/skills/quality-dashboard/SKILL.md`
-   - カバレッジ・テスト健全性・4 Keys・負債推移の動的可視化、時系列トレンド早期警戒。
-6. **リスク管理・ガードレール**: `.github/skills/risk-management/SKILL.md`
-   - 1ターン3ファイル原則、Green-to-Green、シークレット漏洩防止、ロールバック基準。
-7. **コミットメッセージ**: `.github/skills/conventional-commits/SKILL.md`
-   - Conventional Commits 形式 (`type(scope): subject`) の厳格運用。
-8. **ドキュメント品質管理**: `.github/skills/document-quality/SKILL.md`
-   - ISO/IEC 29148 整合性、トレーサビリティ検証、MkDocs ポータル。
+- `requirements-development`: 要求・受け入れ基準・日本語BDDの定義
+- `test-strategy`: テスト層別・品質ゲート・不安定テスト防止
+- `atdd-tdd`: ATDD（BDD）とTDDの赤→緑→リファクタリングによる開発サイクル
+- `risk-management`: 変更範囲・ロールバック・依存安全性のガードレール
 
