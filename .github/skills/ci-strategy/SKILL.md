@@ -7,19 +7,11 @@ description: "Quality gates for static analysis, test execution, coverage checks
 
 ## 1. 品質ゲート
 
-PR 和 merge 前に以下を必須とする。
-
-```bash
-mypy --strict
-ruff check .
-pytest
-coverage run -m pytest
-```
-
-- `mypy --strict`: 型安全性の破壊を阻止する。
-- `ruff check .`: 低コストで静的解析を実行する。
-- `pytest`: テストスイートの全件成功を確認する。
-- `coverage`: 変更領域のカバレッジを確認し、品質劣化を検知する。
+PR merge 前に以下を必須とする。
+- 型安全性の破壊を阻止する。
+- 静的解析を実行する。
+- テストスイートの全件成功を確認する。
+- 変更領域のカバレッジを確認し、品質劣化を検知する。
 
 ## 2. 検証階層
 
