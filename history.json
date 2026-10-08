@@ -1,0 +1,19 @@
+{
+  "version": 1,
+  "snapshots": [
+    {
+      "generated_at": "2026-10-08T11:35:04+00:00",
+      "commit": "fa19edd01995e121f08ee2a184cbbcddb3b6dc6f",
+      "coverage": {
+        "lines": 54.088050314465406,
+        "functions": 57.377049180327866,
+        "branches": 77.19298245614034
+      },
+      "requirements": {
+        "scope_fingerprint": "874706e1dfbceeae95b439aab6ee5262bf2eed0a85c8b00f9ff75c05d113e015",
+        "total": 30,
+        "completed": []
+      }
+    }
+  ]
+}
