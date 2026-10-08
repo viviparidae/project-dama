@@ -112,6 +112,9 @@ jobs:
       - name: Generate quality dashboard
         run: npm run dashboard:generate
 
+      - name: Verify GitHub Pages landing page
+        run: test -f docs/pages/index.html
+
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
 

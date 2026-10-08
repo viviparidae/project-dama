@@ -41,6 +41,7 @@ npm run dashboard:generate
 
 - 要求ページ: `docs/pages/requirements/user-stories.ja.md`
 - ダッシュボード: `docs/pages/quality-dashboard/index.html`
+- GitHub Pagesのトップページ: `/`
 - GitHub Pagesの公開URL: `/requirements/user-stories.ja.md` と `/quality-dashboard/`
 - 元の要求YAMLと品質閾値は変更しない。
 - 要求ページとダッシュボードは同じGitHub Pages Artifactへ配置する。
