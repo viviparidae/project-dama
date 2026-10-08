@@ -57,6 +57,7 @@
 
 * [ビジョン・スコープ定義書](docs/requirements/vision-scope.md)
 * [ユーザーストーリー・受け入れ基準 (YAML)](docs/requirements/user-stories.yaml)
+* [画面設計書（モックアップ準拠）](docs/design/screen-design.md)
 
 ---
 

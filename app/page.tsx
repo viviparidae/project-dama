@@ -1,104 +1,283 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useMemo, useState } from "react";
+import { DashboardHeader } from "../components/dashboard/DashboardHeader";
+import { DomainPanel } from "../components/dashboard/DomainPanel";
+import { DomainTabs } from "../components/dashboard/DomainTabs";
+import { FooterSummary } from "../components/dashboard/FooterSummary";
+import { MechanismsPanel } from "../components/dashboard/MechanismsPanel";
+import { MetricDeck } from "../components/dashboard/MetricDeck";
 
-type Interval = 20 | 30 | 45;
+const DOMAIN_KEYS = ["nutrition", "movement", "light", "attention"] as const;
+type DomainKey = (typeof DOMAIN_KEYS)[number];
 
-const INTERVALS: Interval[] = [20, 30, 45];
+type Intervention = {
+  id: string;
+  name: string;
+  impact: string;
+  wellbeingPts: number;
+  mismatchPts: number;
+  mechanism: string;
+};
+
+type Indicator = {
+  name: string;
+  base: string;
+  active: string;
+};
+
+type Domain = {
+  key: DomainKey;
+  title: string;
+  subtitle: string;
+  trait: string;
+  trigger: string;
+  interventions: Intervention[];
+  indicators: Indicator[];
+};
+
+const DOMAINS: Record<DomainKey, Domain> = {
+  nutrition: {
+    key: "nutrition",
+    title: "Nutrition & Metabolism",
+    subtitle: "Aligning nutrient density and meal timing with digestive biology.",
+    trait: "Innate preference for sugar and fats to survive ancestral calorie scarcity.",
+    trigger: "Continuous access to hyper-palatable, low-fiber, ultra-processed food.",
+    indicators: [
+      { name: "Postprandial Glycemic Spikes", base: "Elevated", active: "Optimized" },
+      { name: "Endogenous GLP-1 Release", base: "Suppressed", active: "Stimulated" },
+      { name: "Hepatic Autophagy", base: "Inhibited", active: "Restored" },
+    ],
+    interventions: [
+      {
+        id: "nutr_circadian",
+        name: "Circadian Fasting Window (12-14h)",
+        impact: "+18 Well-being | -15 Mismatch",
+        wellbeingPts: 18,
+        mismatchPts: 15,
+        mechanism: "Restores hepatic clock gene expression & insular sensitivity during nocturnal phase.",
+      },
+      {
+        id: "nutr_wholefood",
+        name: "Whole Food Fiber-First Rule",
+        impact: "+20 Well-being | -18 Mismatch",
+        wellbeingPts: 20,
+        mismatchPts: 18,
+        mechanism: "Stimulates mucosal PYY & GLP-1 hormone release to signal hypothalamic satiety.",
+      },
+      {
+        id: "nutr_hydration",
+        name: "Pre-Meal Hydration Protocol",
+        impact: "+10 Well-being | -8 Mismatch",
+        wellbeingPts: 10,
+        mismatchPts: 8,
+        mechanism: "Prevents osmoregulatory thirst signals from being misinterpreted as caloric hunger.",
+      },
+    ],
+  },
+  movement: {
+    key: "movement",
+    title: "Movement & Biomechanics",
+    subtitle: "Re-introducing physical variety and persistent low-intensity locomotion.",
+    trait: "Energy conservation instinct during rest; built for walking 8-12km daily.",
+    trigger: "Chaired desk work, static postures, and mechanized transportation.",
+    indicators: [
+      { name: "Muscle GLUT4 Translocation", base: "Minimal", active: "High Density" },
+      { name: "Lumbar Spinal Compression", base: "High", active: "Relieved" },
+      { name: "Mitochondrial Biogenesis", base: "Low", active: "Upregulated" },
+    ],
+    interventions: [
+      {
+        id: "mov_microburst",
+        name: "Hourly Micro-Burst Movement",
+        impact: "+22 Well-being | -20 Mismatch",
+        wellbeingPts: 22,
+        mismatchPts: 20,
+        mechanism: "Triggers insulin-independent skeletal GLUT4 recruitment to clear plasma glucose.",
+      },
+      {
+        id: "mov_ground",
+        name: "Varied Posture & Floor Sitting",
+        impact: "+14 Well-being | -12 Mismatch",
+        wellbeingPts: 14,
+        mismatchPts: 12,
+        mechanism: "Engages deep hip rotators & spinal stabilizer musculature, restoring pelvic motility.",
+      },
+      {
+        id: "mov_zone2",
+        name: "Zone-2 Aerobic Locomotion",
+        impact: "+18 Well-being | -16 Mismatch",
+        wellbeingPts: 18,
+        mismatchPts: 16,
+        mechanism: "Promotes mitochondrial density and enhances fatty-acid beta-oxidation capacity.",
+      },
+    ],
+  },
+  light: {
+    key: "light",
+    title: "Light & Circadian Biology",
+    subtitle: "Synchronizing central suprachiasmatic nucleus (SCN) clock with solar cycles.",
+    trait: "Circadian entrainment driven by high-lux solar morning & dark dusk.",
+    trigger: "Indoor low-lux days, artificial blue-rich LED exposure after sunset.",
+    indicators: [
+      { name: "Melatonin Suppression Peak", base: "Delayed", active: "Synchronized" },
+      { name: "Nightly Deep NREM Sleep %", base: "11% (Suboptimal)", active: "22% (Optimal)" },
+      { name: "Cortisol Awakening Response", base: "Blunted", active: "Robust" },
+    ],
+    interventions: [
+      {
+        id: "light_sunlight",
+        name: "Morning Outdoor Sunlight (10m)",
+        impact: "+25 Well-being | -22 Mismatch",
+        wellbeingPts: 25,
+        mismatchPts: 22,
+        mechanism: "Activates ipRGC retinal cells to reset SCN master clock & trigger cortisol peak.",
+      },
+      {
+        id: "light_nightshift",
+        name: "Post-Sunset Warm Light Shift",
+        impact: "+20 Well-being | -18 Mismatch",
+        wellbeingPts: 20,
+        mismatchPts: 18,
+        mechanism: "Eliminates 460nm blue spectrum to allow pineal gland uninhibited melatonin production.",
+      },
+      {
+        id: "light_thermal",
+        name: "Cool Room Sleep Dip (18°C/65°F)",
+        impact: "+15 Well-being | -12 Mismatch",
+        wellbeingPts: 15,
+        mismatchPts: 12,
+        mechanism: "Facilitates requisite 1°C core body temperature drop for deep slow-wave sleep.",
+      },
+    ],
+  },
+  attention: {
+    key: "attention",
+    title: "Attention & Social Connection",
+    subtitle: "Protecting cognitive focus and tribe-scale social interaction.",
+    trait: "Tuned for immediate physical environment & small tribal affinity (~150 people).",
+    trigger: "Hyper-stimulating algorithmic feeds, asynchronous notifications, social isolation.",
+    indicators: [
+      { name: "Prefrontal Cognitive Fatigue", base: "High", active: "Recovered" },
+      { name: "Tonic Dopamine Baseline", base: "Depleted", active: "Restored" },
+      { name: "Vagal Parasympathetic Tone", base: "Low", active: "Elevated" },
+    ],
+    interventions: [
+      {
+        id: "att_batching",
+        name: "Batch Notification Pulses",
+        impact: "+22 Well-being | -20 Mismatch",
+        wellbeingPts: 22,
+        mismatchPts: 20,
+        mechanism: "Reduces sympathetic nervous system arousal and interrupts tonic dopamine depletion.",
+      },
+      {
+        id: "att_focus",
+        name: "Monotropic Focus Blocks (45m)",
+        impact: "+18 Well-being | -16 Mismatch",
+        wellbeingPts: 18,
+        mismatchPts: 16,
+        mechanism: "Eliminates attention residue from context switching, optimizing working memory.",
+      },
+      {
+        id: "att_social",
+        name: "Daily In-Person Micro-Affiliation",
+        impact: "+16 Well-being | -14 Mismatch",
+        wellbeingPts: 16,
+        mismatchPts: 14,
+        mechanism: "Triggers endogenous oxytocin synthesis and lowers amygdalar threat detection.",
+      },
+    ],
+  },
+};
 
 export default function Home() {
-  const [isOpen, setIsOpen] = useState(false);
-  const [interval, setInterval] = useState<Interval>(30);
-  const [enabled, setEnabled] = useState(true);
-  const [savedMessage, setSavedMessage] = useState("");
+  const [selectedDomain, setSelectedDomain] = useState<DomainKey>("nutrition");
+  const [activeInterventions, setActiveInterventions] = useState<string[]>([]);
 
-  useEffect(() => {
-    const saved = window.localStorage.getItem("micro-move-setting");
-    if (!saved) return;
+  const domain = DOMAINS[selectedDomain];
 
-    try {
-      const parsed = JSON.parse(saved) as { intervalMinutes: Interval; enabled: boolean };
-      if (INTERVALS.includes(parsed.intervalMinutes)) {
-        setInterval(parsed.intervalMinutes);
-        setEnabled(parsed.enabled);
-      }
-    } catch {
-      window.localStorage.removeItem("micro-move-setting");
-    }
-  }, []);
+  const metrics = useMemo(() => {
+    let wellbeing = 35;
+    let mismatch = 85;
+    let totalPossible = 0;
 
-  const saveSetting = () => {
-    const setting = { intervalMinutes: interval, enabled };
-    window.localStorage.setItem("micro-move-setting", JSON.stringify(setting));
-    setSavedMessage("設定を保存しました");
+    Object.values(DOMAINS).forEach((item) => {
+      totalPossible += item.interventions.length;
+      item.interventions.forEach((intervention) => {
+        if (activeInterventions.includes(intervention.id)) {
+          wellbeing += intervention.wellbeingPts;
+          mismatch -= intervention.mismatchPts;
+        }
+      });
+    });
+
+    wellbeing = Math.min(100, Math.max(0, wellbeing));
+    mismatch = Math.max(5, Math.min(100, mismatch));
+
+    return {
+      wellbeing,
+      mismatch,
+      activeCount: activeInterventions.length,
+      totalCount: totalPossible,
+    };
+  }, [activeInterventions]);
+
+  const toggleIntervention = (id: string) => {
+    setActiveInterventions((current) =>
+      current.includes(id) ? current.filter((item) => item !== id) : [...current, id],
+    );
   };
 
+  const tabItems = DOMAIN_KEYS.map((key) => ({
+    key,
+    label: DOMAINS[key].title.split(" & ")[0],
+  }));
+
   return (
-    <main className="page-shell">
-      <section className="settings-card" aria-labelledby="settings-title">
-        <header className="settings-header">
-          <p className="eyebrow">身体活動</p>
-          <h1 id="settings-title">マイクロムーブ設定</h1>
-          <p>設定した間隔で軽運動を促す通知を受け取ります。</p>
-        </header>
+    <main className="dashboard-shell">
+      <div className="widget-container">
+        <DashboardHeader
+          title="Evolutionary Mismatch Explorer"
+          subtitle="Align modern digital and physical behavior with ancestral human biology."
+        />
 
-        <button
-          className="menu-button"
-          type="button"
-          aria-expanded={isOpen}
-          onClick={() => {
-            setIsOpen((current) => !current);
-            setSavedMessage("");
-          }}
-        >
-          マイクロムーブリマインド
-          <span aria-hidden="true">{isOpen ? "−" : "+"}</span>
-        </button>
+        <MetricDeck
+          mismatch={metrics.mismatch}
+          wellbeing={metrics.wellbeing}
+          activeCount={metrics.activeCount}
+          totalCount={metrics.totalCount}
+        />
 
-        {isOpen && (
-          <div className="settings-panel">
-            <fieldset>
-              <legend>通知間隔</legend>
-              <div className="interval-grid">
-                {INTERVALS.map((value) => (
-                  <button
-                    key={value}
-                    className={interval === value ? "interval-button selected" : "interval-button"}
-                    type="button"
-                    aria-pressed={interval === value}
-                    onClick={() => setInterval(value)}
-                  >
-                    {value}分
-                  </button>
-                ))}
-              </div>
-            </fieldset>
+        <DomainTabs
+          items={tabItems}
+          activeKey={selectedDomain}
+          onChange={(key) => setSelectedDomain(key as DomainKey)}
+        />
 
-            <label className="toggle-row">
-              <span>
-                <strong>通知を有効にする</strong>
-                <small>設定した間隔で通知を表示します。</small>
-              </span>
-              <input
-                type="checkbox"
-                checked={enabled}
-                onChange={(event) => setEnabled(event.target.checked)}
-              />
-            </label>
+        <div className="main-layout">
+          <DomainPanel
+            title={domain.title}
+            subtitle={domain.subtitle}
+            trait={domain.trait}
+            trigger={domain.trigger}
+            interventions={domain.interventions}
+            activeInterventions={activeInterventions}
+            onToggleIntervention={toggleIntervention}
+          />
 
-            <button className="save-button" type="button" onClick={saveSetting}>
-              保存
-            </button>
+          <MechanismsPanel
+            indicators={domain.indicators}
+            interventions={domain.interventions}
+            activeInterventions={activeInterventions}
+          />
+        </div>
 
-            {savedMessage && (
-              <div className="success-message" role="status">
-                <strong>{savedMessage}</strong>
-                <span>{interval}分間隔で通知します</span>
-              </div>
-            )}
-          </div>
-        )}
-      </section>
+        <FooterSummary
+          summaryText={`${metrics.activeCount} interventions active across 4 domains. Mismatch score is ${metrics.mismatch}/100.`}
+          onReset={() => setActiveInterventions([])}
+        />
+      </div>
     </main>
   );
 }
