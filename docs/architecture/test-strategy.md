@@ -95,6 +95,7 @@ graph TD
 | NFR-PERF-01 | タイマー操作のレスポンスタイム（200ms以内） | E2E / パフォーマンス | `e2e/performance.spec.ts` |
 | NFR-SEC-01 | ユーザーデータの非公開保護（RLS） | Integration | `integration/security/rls.test.ts` |
 | NFR-USAB-01 | コアアクションの操作ステップ数（3回以内） | E2E | `e2e/usability.spec.ts` |
+| NFR-I18N-01 | 日本語環境での日本語表示（ユーザー向け文言100%） | E2E | `e2e/localization.spec.ts` |
 
 ---
 
@@ -156,4 +157,3 @@ const mockFoodService: IFoodExternalService = {
 - [C4 モデル](c4-model.md)
 - [ADR-001: Clean Architecture](adr/ADR-001-clean-architecture.md)
 - [CI/CD 戦略](../../.github/skills/ci-strategy/SKILL.md)
-

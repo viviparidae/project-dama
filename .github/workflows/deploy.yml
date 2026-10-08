@@ -19,6 +19,7 @@ on:
       - "src/**"
       - "tests/**"
       - "docs/requirements/**"
+      - "docs/quality/**"
       - "docs/pages/**"
       - "scripts/**"
       - ".github/skills/**"
@@ -80,7 +81,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 15
     permissions:
-      contents: read
+      contents: write
       pages: write
       id-token: write
     environment:
@@ -109,8 +110,47 @@ jobs:
       - name: Run tests and collect coverage
         run: npx vitest run --coverage --coverage.thresholds.lines=0 --coverage.thresholds.functions=0 --coverage.thresholds.branches=0 --reporter=json --outputFile=coverage/vitest-results.json
 
+      - name: Ensure quality history branch exists
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          if gh api "repos/$GITHUB_REPOSITORY/branches/quality-history" --silent >/dev/null 2>&1; then
+            echo "Quality history branch already exists"
+          else
+            gh api "repos/$GITHUB_REPOSITORY/git/refs" \
+              -f ref=refs/heads/quality-history \
+              -f sha="$GITHUB_SHA"
+          fi
+
+      - name: Check out quality history
+        uses: actions/checkout@v4
+        with:
+          ref: quality-history
+          path: quality-history
+
       - name: Generate quality dashboard
-        run: npm run dashboard:generate
+        run: |
+          python3 scripts/generate_quality_dashboard.py \
+            coverage/vitest-results.json \
+            coverage/coverage-final.json \
+            docs/pages/quality-dashboard/index.html \
+            --requirements docs/requirements/user-stories.yaml \
+            --requirements-evidence docs/quality/requirements-status.json \
+            --repository-root . \
+            --history quality-history/history.json \
+            --commit "$GITHUB_SHA"
+          cp quality-history/history.json docs/pages/quality-dashboard/history.json
+
+      - name: Save quality history
+        working-directory: quality-history
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add history.json
+          if ! git diff --cached --quiet; then
+            git commit -m "chore: update quality metrics history"
+            git push origin HEAD:quality-history
+          fi
 
       - name: Verify GitHub Pages landing page
         run: test -f docs/pages/index.html

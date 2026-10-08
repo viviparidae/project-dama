@@ -339,3 +339,13 @@ non_functional_requirements:
     response: "ユーザーがタイマーを開始できる"
     measure: "ホーム画面からタイマー開始まで **タップ/クリック3回以内**"
 
+  - ac_id: NFR-I18N-01
+    priority: "Must"
+    title: "日本語環境での日本語表示"
+    category: "国際化・ローカライズ"
+    source: "ユーザー"
+    stimulus: "アプリへアクセスする"
+    environment: "ブラウザの優先言語が日本語に設定されている通常利用時"
+    target: "Webアプリケーションのユーザー向け表示"
+    response: "画面、操作ラベル、通知、エラーメッセージなどのユーザー向け文言が日本語で表示される"
+    measure: "表示されるユーザー向け文言の日本語対応率 **100%**（未翻訳の文言 **0件**）"
