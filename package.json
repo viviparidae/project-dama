@@ -8,7 +8,6 @@
     "start": "next start",
     "lint": "next lint --max-warnings 0",
     "typecheck": "tsc --noEmit",
-
     "test": "vitest run",
     "test:unit": "vitest run tests/unit",
     "test:acceptance": "vitest run tests/acceptance",
@@ -18,31 +17,35 @@
     "test:python": "python3 -m unittest discover -s tests/python -p 'test_*.py' -v",
     "requirements:humanize": "python3 scripts/humanize_requirements.py docs/requirements/user-stories.yaml docs/pages/requirements/user-stories.ja.md",
     "dashboard:generate": "python3 scripts/generate_quality_dashboard.py coverage/vitest-results.json coverage/coverage-final.json docs/pages/quality-dashboard/index.html --requirements docs/requirements/user-stories.yaml --requirements-evidence docs/quality/requirements-status.json --repository-root .",
-
     "test:e2e": "playwright test tests/e2e",
     "test:e2e:ui": "playwright test tests/e2e --ui",
-
     "test:ci:commit": "vitest run tests/unit --reporter=verbose",
     "test:ci:pr": "vitest run tests/unit tests/acceptance tests/integration --reporter=verbose",
-    "test:ci:deploy": "playwright test tests/e2e"
+    "test:ci:deploy": "playwright test tests/e2e",
+    "check:i18n": "node scripts/check-translation-coverage.js"
   },
   "dependencies": {
+    "@supabase/supabase-js": "^2",
+    "i18next": "^26.4.7",
+    "i18next-browser-languagedetector": "^8.2.1",
+    "i18next-http-backend": "^4.0.3",
     "next": "14.x",
     "react": "^18",
     "react-dom": "^18",
-    "@supabase/supabase-js": "^2"
+    "react-i18next": "^17.0.20"
   },
   "devDependencies": {
-    "typescript": "^5",
+    "@playwright/test": "^1",
+    "@types/i18next": "^12.1.0",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
-    "vitest": "^1",
     "@vitest/coverage-v8": "^1",
-    "jsdom": "^24",
-    "@playwright/test": "^1",
-    "tailwindcss": "^3",
     "eslint": "^8",
-    "eslint-config-next": "14.x"
+    "eslint-config-next": "14.x",
+    "jsdom": "^24",
+    "tailwindcss": "^3",
+    "typescript": "^5",
+    "vitest": "^1"
   }
 }
