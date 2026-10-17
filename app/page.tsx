@@ -7,6 +7,7 @@ import { DomainTabs } from "../components/dashboard/DomainTabs";
 import { FooterSummary } from "../components/dashboard/FooterSummary";
 import { MechanismsPanel } from "../components/dashboard/MechanismsPanel";
 import { MetricDeck } from "../components/dashboard/MetricDeck";
+import { t } from "../src/lib/i18n";
 
 const DOMAIN_KEYS = ["nutrition", "movement", "light", "attention"] as const;
 type DomainKey = (typeof DOMAIN_KEYS)[number];
@@ -39,153 +40,153 @@ type Domain = {
 const DOMAINS: Record<DomainKey, Domain> = {
   nutrition: {
     key: "nutrition",
-    title: "Nutrition & Metabolism",
-    subtitle: "Aligning nutrient density and meal timing with digestive biology.",
-    trait: "Innate preference for sugar and fats to survive ancestral calorie scarcity.",
-    trigger: "Continuous access to hyper-palatable, low-fiber, ultra-processed food.",
+    title: "栄養・代謝",
+    subtitle: "栄養密度と食事タイミングを消化生物学に合わせる。",
+    trait: "祖先のカロリー不足を生き延びるための、糖と脂肪への生来の嗜好。",
+    trigger: "ハイパー・パラタブルで低繊維質の超加工食品への継続的アクセス。",
     indicators: [
-      { name: "Postprandial Glycemic Spikes", base: "Elevated", active: "Optimized" },
-      { name: "Endogenous GLP-1 Release", base: "Suppressed", active: "Stimulated" },
-      { name: "Hepatic Autophagy", base: "Inhibited", active: "Restored" },
+      { name: "食後血糖値急上昇", base: "上昇", active: "最適化" },
+      { name: "内因性 GLP-1 放出", base: "抑制", active: "刺激" },
+      { name: "肝臓オートファジー", base: "阻害", active: "回復" },
     ],
     interventions: [
       {
         id: "nutr_circadian",
-        name: "Circadian Fasting Window (12-14h)",
-        impact: "+18 Well-being | -15 Mismatch",
+        name: "概日断食ウィンドウ（12-14時間）",
+        impact: "+18 ウェルビーイング | -15 ミスマッチ",
         wellbeingPts: 18,
         mismatchPts: 15,
-        mechanism: "Restores hepatic clock gene expression & insular sensitivity during nocturnal phase.",
+        mechanism: "夜間期における肝臓クロック遺伝子発現と島細胞感受性を回復する。",
       },
       {
         id: "nutr_wholefood",
-        name: "Whole Food Fiber-First Rule",
-        impact: "+20 Well-being | -18 Mismatch",
+        name: "ホールフード ファイバー・ファースト ルール",
+        impact: "+20 ウェルビーイング | -18 ミスマッチ",
         wellbeingPts: 20,
         mismatchPts: 18,
-        mechanism: "Stimulates mucosal PYY & GLP-1 hormone release to signal hypothalamic satiety.",
+        mechanism: "粘膜 PYY と GLP-1 ホルモン放出を刺激し、視床下部の満腹信号を伝える。",
       },
       {
         id: "nutr_hydration",
-        name: "Pre-Meal Hydration Protocol",
-        impact: "+10 Well-being | -8 Mismatch",
+        name: "事前水分補給プロトコル",
+        impact: "+10 ウェルビーイング | -8 ミスマッチ",
         wellbeingPts: 10,
         mismatchPts: 8,
-        mechanism: "Prevents osmoregulatory thirst signals from being misinterpreted as caloric hunger.",
+        mechanism: "浸透圧調節の渇き信号が摂食信号と誤認されるのを防ぐ。",
       },
     ],
   },
   movement: {
     key: "movement",
-    title: "Movement & Biomechanics",
-    subtitle: "Re-introducing physical variety and persistent low-intensity locomotion.",
-    trait: "Energy conservation instinct during rest; built for walking 8-12km daily.",
-    trigger: "Chaired desk work, static postures, and mechanized transportation.",
+    title: "運動・バイオメカニクス",
+    subtitle: "身体の多様性と持続的な低強度 locomotion を再導入する。",
+    trait: "休息時のエネルギー節約本能。1日 8-12km 歩行に適応。",
+    trigger: "椅子でのデスクワーク、静止姿勢、機械化された移動手段。",
     indicators: [
-      { name: "Muscle GLUT4 Translocation", base: "Minimal", active: "High Density" },
-      { name: "Lumbar Spinal Compression", base: "High", active: "Relieved" },
-      { name: "Mitochondrial Biogenesis", base: "Low", active: "Upregulated" },
+      { name: "筋肉 GLUT4 トランスロケーション", base: "最小", active: "高密度" },
+      { name: "腰椎圧迫", base: "高い", active: "緩和" },
+      { name: "ミトコンドリア新生", base: "低い", active: "上昇" },
     ],
     interventions: [
       {
         id: "mov_microburst",
-        name: "Hourly Micro-Burst Movement",
-        impact: "+22 Well-being | -20 Mismatch",
+        name: "毎時マイクロバースト運動",
+        impact: "+22 ウェルビーイング | -20 ミスマッチ",
         wellbeingPts: 22,
         mismatchPts: 20,
-        mechanism: "Triggers insulin-independent skeletal GLUT4 recruitment to clear plasma glucose.",
+        mechanism: "インスリン非依存の骨格筋 GLUT4 動員をトリガーし、血漿グルコースを除去する。",
       },
       {
         id: "mov_ground",
-        name: "Varied Posture & Floor Sitting",
-        impact: "+14 Well-being | -12 Mismatch",
+        name: "多様な姿勢と床座り",
+        impact: "+14 ウェルビーイング | -12 ミスマッチ",
         wellbeingPts: 14,
         mismatchPts: 12,
-        mechanism: "Engages deep hip rotators & spinal stabilizer musculature, restoring pelvic motility.",
+        mechanism: "深層股関節外旋筋と脊柱安定筋を動員し、骨盤運動性を回復する。",
       },
       {
         id: "mov_zone2",
-        name: "Zone-2 Aerobic Locomotion",
-        impact: "+18 Well-being | -16 Mismatch",
+        name: "ゾーン2 有酸素 locomotion",
+        impact: "+18 ウェルビーイング | -16 ミスマッチ",
         wellbeingPts: 18,
         mismatchPts: 16,
-        mechanism: "Promotes mitochondrial density and enhances fatty-acid beta-oxidation capacity.",
+        mechanism: "ミトコンドリア密度を促進し、脂肪酸β酸化能を高める。",
       },
     ],
   },
   light: {
     key: "light",
-    title: "Light & Circadian Biology",
-    subtitle: "Synchronizing central suprachiasmatic nucleus (SCN) clock with solar cycles.",
-    trait: "Circadian entrainment driven by high-lux solar morning & dark dusk.",
-    trigger: "Indoor low-lux days, artificial blue-rich LED exposure after sunset.",
+    title: "光・サーカディアン生物学",
+    subtitle: "視床下部視交叉上核（SCN）クロックを太陽周期と同期する。",
+    trait: "高ルクスの朝の太陽光と暗い夕暮れによる概日同期。",
+    trigger: "屋内の低ルクスな日中、日没後のブルーリッチな人工 LED 曝露。",
     indicators: [
-      { name: "Melatonin Suppression Peak", base: "Delayed", active: "Synchronized" },
-      { name: "Nightly Deep NREM Sleep %", base: "11% (Suboptimal)", active: "22% (Optimal)" },
-      { name: "Cortisol Awakening Response", base: "Blunted", active: "Robust" },
+      { name: "メラトニン抑制ピーク", base: "遅延", active: "同期済み" },
+      { name: "夜間深い NREM 睡眠率", base: "11% (非最適)", active: "22% (最適)" },
+      { name: "起床時コルチゾール応答", base: "鈍化", active: "強固" },
     ],
     interventions: [
       {
         id: "light_sunlight",
-        name: "Morning Outdoor Sunlight (10m)",
-        impact: "+25 Well-being | -22 Mismatch",
+        name: "朝の屋外日光浴（10分）",
+        impact: "+25 ウェルビーイング | -22 ミスマッチ",
         wellbeingPts: 25,
         mismatchPts: 22,
-        mechanism: "Activates ipRGC retinal cells to reset SCN master clock & trigger cortisol peak.",
+        mechanism: "ipRGC 網膜細胞を活性化し SCN マスタークロックをリセットしコルチゾールピークを誘発する。",
       },
       {
         id: "light_nightshift",
-        name: "Post-Sunset Warm Light Shift",
-        impact: "+20 Well-being | -18 Mismatch",
+        name: "日没後暖色光シフト",
+        impact: "+20 ウェルビーイング | -18 ミスマッチ",
         wellbeingPts: 20,
         mismatchPts: 18,
-        mechanism: "Eliminates 460nm blue spectrum to allow pineal gland uninhibited melatonin production.",
+        mechanism: "460nm ブルー波長を排除し、松果体のメラトニン産生を抑制なく可能にする。",
       },
       {
         id: "light_thermal",
-        name: "Cool Room Sleep Dip (18°C/65°F)",
-        impact: "+15 Well-being | -12 Mismatch",
+        name: "涼しい部屋での睡眠ディップ（18°C/65°F）",
+        impact: "+15 ウェルビーイング | -12 ミスマッチ",
         wellbeingPts: 15,
         mismatchPts: 12,
-        mechanism: "Facilitates requisite 1°C core body temperature drop for deep slow-wave sleep.",
+        mechanism: "深い徐波睡眠に必要な 1°C の深部体温低下を促進する。",
       },
     ],
   },
   attention: {
     key: "attention",
-    title: "Attention & Social Connection",
-    subtitle: "Protecting cognitive focus and tribe-scale social interaction.",
-    trait: "Tuned for immediate physical environment & small tribal affinity (~150 people).",
-    trigger: "Hyper-stimulating algorithmic feeds, asynchronous notifications, social isolation.",
+    title: "注意・社会的つながり",
+    subtitle: "認知的焦点と部族規模の社会的相互作用を保護する。",
+    trait: "直近の物理環境と小規模な部族親和（約150人）に最適化。",
+    trigger: "ハイ・スタミュレイティングなアルゴリズムフィード、非同期通知、社会的孤立。",
     indicators: [
-      { name: "Prefrontal Cognitive Fatigue", base: "High", active: "Recovered" },
-      { name: "Tonic Dopamine Baseline", base: "Depleted", active: "Restored" },
-      { name: "Vagal Parasympathetic Tone", base: "Low", active: "Elevated" },
+      { name: "前頭葉認知疲労", base: "高い", active: "回復" },
+      { name: "トニックドーパミン基準値", base: "枯渇", active: "回復" },
+      { name: "迷走神経副交感神経緊張", base: "低い", active: "高め" },
     ],
     interventions: [
       {
         id: "att_batching",
-        name: "Batch Notification Pulses",
-        impact: "+22 Well-being | -20 Mismatch",
+        name: "通知バッチ処理",
+        impact: "+22 ウェルビーイング | -20 ミスマッチ",
         wellbeingPts: 22,
         mismatchPts: 20,
-        mechanism: "Reduces sympathetic nervous system arousal and interrupts tonic dopamine depletion.",
+        mechanism: "交感神経系の興奮を軽減し、トニックなドーパミン枯渇を遮断する。",
       },
       {
         id: "att_focus",
-        name: "Monotropic Focus Blocks (45m)",
-        impact: "+18 Well-being | -16 Mismatch",
+        name: "単一焦点ブロック（45分）",
+        impact: "+18 ウェルビーイング | -16 ミスマッチ",
         wellbeingPts: 18,
         mismatchPts: 16,
-        mechanism: "Eliminates attention residue from context switching, optimizing working memory.",
+        mechanism: "コンテキストスイッチングによる注意残渣を排除し、ワーキングメモリを最適化する。",
       },
       {
         id: "att_social",
-        name: "Daily In-Person Micro-Affiliation",
-        impact: "+16 Well-being | -14 Mismatch",
+        name: "日々の対面マイクロ・アフィリエーション",
+        impact: "+16 ウェルビーイング | -14 ミスマッチ",
         wellbeingPts: 16,
         mismatchPts: 14,
-        mechanism: "Triggers endogenous oxytocin synthesis and lowers amygdalar threat detection.",
+        mechanism: "内因性オキシトシン合成を誘発し、扁桃体の脅威検知を低下させる。",
       },
     ],
   },
@@ -231,15 +232,15 @@ export default function Home() {
 
   const tabItems = DOMAIN_KEYS.map((key) => ({
     key,
-    label: DOMAINS[key].title.split(" & ")[0],
+    label: DOMAINS[key].title,
   }));
 
   return (
     <main className="dashboard-shell">
       <div className="widget-container">
         <DashboardHeader
-          title="Evolutionary Mismatch Explorer"
-          subtitle="Align modern digital and physical behavior with ancestral human biology."
+          title={t("header.title")}
+          subtitle={t("header.subtitle")}
         />
 
         <MetricDeck
@@ -274,7 +275,10 @@ export default function Home() {
         </div>
 
         <FooterSummary
-          summaryText={`${metrics.activeCount} interventions active across 4 domains. Mismatch score is ${metrics.mismatch}/100.`}
+          summaryText={t("footer.interventionsActive", {
+            activeCount: metrics.activeCount,
+            mismatch: metrics.mismatch,
+          })}
           onReset={() => setActiveInterventions([])}
         />
       </div>

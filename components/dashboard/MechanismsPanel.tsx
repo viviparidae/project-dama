@@ -1,3 +1,5 @@
+import { t } from "../../src/lib/i18n";
+
 type Indicator = {
   name: string;
   base: string;
@@ -23,25 +25,25 @@ export function MechanismsPanel({ indicators, interventions, activeInterventions
   return (
     <aside className="panel-card">
       <div className="panel-header">
-        <h3 className="panel-title">Biological Mechanisms</h3>
-        <p className="panel-subtitle">Physiological adaptations triggered by active habits.</p>
+        <h3 className="panel-title">{t("mechanismsPanel.biologicalMechanisms")}</h3>
+        <p className="panel-subtitle">{t("mechanismsPanel.mechanismSubtitle")}</p>
       </div>
 
       <div className="mechanisms-list">
         {domainMechanisms.length > 0 ? (
           domainMechanisms.map((intervention) => (
             <div key={intervention.id} className="mechanism-card">
-              <span className="mechanism-tag">{intervention.name.split(" ")[0]} Mechanism</span>
+              <span className="mechanism-tag">{t("mechanismsPanel.mechanismTag", { name: intervention.name.split(" ")[0] })}</span>
               <span className="mechanism-text">{intervention.mechanism}</span>
             </div>
           ))
         ) : (
-          <div className="empty-mechanisms">Toggle interventions above to reveal biological pathways.</div>
+          <div className="empty-mechanisms">{t("mechanismsPanel.emptyMechanisms")}</div>
         )}
       </div>
 
       <div className="panel-header panel-header-tight">
-        <h3 className="panel-title">Domain Indicators</h3>
+        <h3 className="panel-title">{t("mechanismsPanel.domainIndicators")}</h3>
       </div>
 
       <div className="indicators-list">
