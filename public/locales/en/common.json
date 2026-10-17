@@ -1,0 +1,43 @@
+{
+  "app": {
+    "title": "Project Dama",
+    "description": "Set up your micro moves."
+  },
+  "localeSwitcher": {
+    "ja": "日本語",
+    "en": "English"
+  },
+  "domainTabs": {
+    "label": "Life domains"
+  },
+  "panel": {
+    "ancestralTrait": "Ancestral Trait:",
+    "modernTrigger": "Modern Trigger:",
+    "targetedInterventions": "Targeted Interventions"
+  },
+  "metricDeck": {
+    "label": {
+      "mismatch": "Mismatch Index",
+      "wellbeing": "Well-Being Score",
+      "mitigation": "Active Mitigations"
+    },
+    "status": {
+      "highMismatch": "High Mismatch",
+      "aligned": "Aligned",
+      "moderate": "Moderate"
+    }
+  },
+  "mechanismsPanel": {
+    "title": "Biological Mechanisms",
+    "subtitle": "Physiological adaptations triggered by active habits.",
+    "empty": "Toggle interventions above to reveal biological pathways.",
+    "domainIndicators": "Domain Indicators"
+  },
+  "footerSummary": {
+    "resetButton": "Reset All States"
+  },
+  "units": {
+    "points": "pts",
+    "percent": "%"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "nav": {
+    "title": "Evolutionary Mismatch Explorer",
+    "subtitle": "Align modern digital and physical behavior with ancestral human biology."
+  },
+  "tabs": {
+    "nutrition": "Nutrition",
+    "movement": "Movement",
+    "light": "Light",
+    "attention": "Attention"
+  },
+  "summary": {
+    "text": "{count} interventions active across {domains} domains. Mismatch score is {score}/100."
+  }
+}

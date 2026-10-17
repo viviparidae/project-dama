@@ -1,0 +1,15 @@
+{
+  "nav": {
+    "title": "進化的不一致エクスプロージャ",
+    "subtitle": "デジタルとフィジカルな現代人間の行動を祖先人類生物学に適合させる。"
+  },
+  "tabs": {
+    "nutrition": "栄養",
+    "movement": "運動",
+    "light": "光",
+    "attention": "注意"
+  },
+  "summary": {
+    "text": "{count}つの介入が{domains}ドメインでアクティブです。不一致スコアは{score}/100です。"
+  }
+}

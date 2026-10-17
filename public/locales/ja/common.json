@@ -1,0 +1,43 @@
+{
+  "app": {
+    "title": "DAMA Dashboard",
+    "description": "マイクロムーブの設定を行う画面です。"
+  },
+  "localeSwitcher": {
+    "ja": "日本語",
+    "en": "English"
+  },
+  "domainTabs": {
+    "label": "Life domains"
+  },
+  "panel": {
+    "ancestralTrait": "祖先の特徴:",
+    "modernTrigger": "現代のトリガー:",
+    "targetedInterventions": "標的とする介入"
+  },
+  "metricDeck": {
+    "label": {
+      "mismatch": "不一致指数",
+      "wellbeing": "ウェルビーイングスコア",
+      "mitigation": "アクティブな軽減"
+    },
+    "status": {
+      "highMismatch": "不一致が高い",
+      "aligned": "整列済み",
+      "moderate": "中程度"
+    }
+  },
+  "mechanismsPanel": {
+    "title": "生物学的メカニズム",
+    "subtitle": "アクティブな習慣によって引き起こされる生理的適応。",
+    "empty": "上の介入を切り替えて生物学的経路を表示する。",
+    "domainIndicators": "ドメイン指標"
+  },
+  "footerSummary": {
+    "resetButton": "全状態をリセット"
+  },
+  "units": {
+    "points": "pts",
+    "percent": "%"
+  }
+}
