@@ -7,3 +7,4 @@ docs/pages/
 __pycache__/
 *.py[cod]
 playwright-report/
+.kilo/
