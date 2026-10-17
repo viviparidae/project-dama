@@ -1,13 +1,11 @@
-type Indicator = {
-  name: string;
-  base: string;
-  active: string;
-};
-
 type Intervention = {
   id: string;
   name: string;
   mechanism: string;
+};type Indicator = {
+  name: string;
+  base: string;
+  active: string;
 };
 
 type MechanismsPanelProps = {

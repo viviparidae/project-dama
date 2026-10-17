@@ -22,6 +22,7 @@ description: "Traceability and quality requirements for requirements, ADRs, impl
 
 ## 3. 文書更新ルール
 
+- 実装を変更する前に、必ず関連するドキュメント（ADR／要求追跡／設計書）を更新する。ドキュメントの更新が実装に先行する。
 - 要件定義を更新した場合は、対応する設計とテストを同じ PR で更新する。
 - 実装変更時は、関連する ADR や要求追跡情報を補完する。
 - 過去の設計判断を削除せず、必要に応じて `Superseded` として明示する。

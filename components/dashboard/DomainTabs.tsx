@@ -1,6 +1,8 @@
+import { useTranslation } from "react-i18next";
+
 type DomainTabItem = {
   key: string;
-  label: string;
+  labelKey: string;
 };
 
 type DomainTabsProps = {
@@ -10,8 +12,9 @@ type DomainTabsProps = {
 };
 
 export function DomainTabs({ items, activeKey, onChange }: DomainTabsProps) {
+  const { t } = useTranslation();
   return (
-    <nav className="domain-tabs" aria-label="Life domains">
+    <nav className="domain-tabs" aria-label={t("domainTabs.label")}>
       {items.map((item) => (
         <button
           key={item.key}
@@ -20,7 +23,7 @@ export function DomainTabs({ items, activeKey, onChange }: DomainTabsProps) {
           data-domain={item.key}
           onClick={() => onChange(item.key)}
         >
-          {item.label}
+          {t(item.labelKey)}
         </button>
       ))}
     </nav>

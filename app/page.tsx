@@ -1,37 +1,39 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { DashboardHeader } from "../components/dashboard/DashboardHeader";
 import { DomainPanel } from "../components/dashboard/DomainPanel";
 import { DomainTabs } from "../components/dashboard/DomainTabs";
 import { FooterSummary } from "../components/dashboard/FooterSummary";
 import { MechanismsPanel } from "../components/dashboard/MechanismsPanel";
 import { MetricDeck } from "../components/dashboard/MetricDeck";
+import { LocaleSwitcher } from "../components/localeSwitcher";
 
 const DOMAIN_KEYS = ["nutrition", "movement", "light", "attention"] as const;
 type DomainKey = (typeof DOMAIN_KEYS)[number];
 
 type Intervention = {
   id: string;
-  name: string;
-  impact: string;
+  nameKey: string;
+  impactKey: string;
   wellbeingPts: number;
   mismatchPts: number;
-  mechanism: string;
+  mechanismKey: string;
 };
 
 type Indicator = {
-  name: string;
-  base: string;
-  active: string;
+  nameKey: string;
+  baseKey: string;
+  activeKey: string;
 };
 
 type Domain = {
   key: DomainKey;
-  title: string;
-  subtitle: string;
-  trait: string;
-  trigger: string;
+  titleKey: string;
+  subtitleKey: string;
+  traitKey: string;
+  triggerKey: string;
   interventions: Intervention[];
   indicators: Indicator[];
 };
@@ -39,159 +41,160 @@ type Domain = {
 const DOMAINS: Record<DomainKey, Domain> = {
   nutrition: {
     key: "nutrition",
-    title: "Nutrition & Metabolism",
-    subtitle: "Aligning nutrient density and meal timing with digestive biology.",
-    trait: "Innate preference for sugar and fats to survive ancestral calorie scarcity.",
-    trigger: "Continuous access to hyper-palatable, low-fiber, ultra-processed food.",
+    titleKey: "domains.nutrition.title",
+    subtitleKey: "domains.nutrition.subtitle",
+    traitKey: "domains.nutrition.trait",
+    triggerKey: "domains.nutrition.trigger",
     indicators: [
-      { name: "Postprandial Glycemic Spikes", base: "Elevated", active: "Optimized" },
-      { name: "Endogenous GLP-1 Release", base: "Suppressed", active: "Stimulated" },
-      { name: "Hepatic Autophagy", base: "Inhibited", active: "Restored" },
+      { nameKey: "indicators.postprandial.name", baseKey: "indicators.postprandial.base", activeKey: "indicators.postprandial.active" },
+      { nameKey: "indicators.glpp.name", baseKey: "indicators.glpp.base", activeKey: "indicators.glpp.active" },
+      { nameKey: "indicators.autophagy.name", baseKey: "indicators.autophagy.base", activeKey: "indicators.autophagy.active" },
     ],
     interventions: [
       {
         id: "nutr_circadian",
-        name: "Circadian Fasting Window (12-14h)",
-        impact: "+18 Well-being | -15 Mismatch",
+        nameKey: "interventions.nutr_circadian.name",
+        impactKey: "interventions.nutr_circadian.impact",
         wellbeingPts: 18,
         mismatchPts: 15,
-        mechanism: "Restores hepatic clock gene expression & insular sensitivity during nocturnal phase.",
+        mechanismKey: "interventions.nutr_circadian.mechanism",
       },
       {
         id: "nutr_wholefood",
-        name: "Whole Food Fiber-First Rule",
-        impact: "+20 Well-being | -18 Mismatch",
+        nameKey: "interventions.nutr_wholefood.name",
+        impactKey: "interventions.nutr_wholefood.impact",
         wellbeingPts: 20,
         mismatchPts: 18,
-        mechanism: "Stimulates mucosal PYY & GLP-1 hormone release to signal hypothalamic satiety.",
+        mechanismKey: "interventions.nutr_wholefood.mechanism",
       },
       {
         id: "nutr_hydration",
-        name: "Pre-Meal Hydration Protocol",
-        impact: "+10 Well-being | -8 Mismatch",
+        nameKey: "interventions.nutr_hydration.name",
+        impactKey: "interventions.nutr_hydration.impact",
         wellbeingPts: 10,
         mismatchPts: 8,
-        mechanism: "Prevents osmoregulatory thirst signals from being misinterpreted as caloric hunger.",
+        mechanismKey: "interventions.nutr_hydration.mechanism",
       },
     ],
   },
   movement: {
     key: "movement",
-    title: "Movement & Biomechanics",
-    subtitle: "Re-introducing physical variety and persistent low-intensity locomotion.",
-    trait: "Energy conservation instinct during rest; built for walking 8-12km daily.",
-    trigger: "Chaired desk work, static postures, and mechanized transportation.",
+    titleKey: "domains.movement.title",
+    subtitleKey: "domains.movement.subtitle",
+    traitKey: "domains.movement.trait",
+    triggerKey: "domains.movement.trigger",
     indicators: [
-      { name: "Muscle GLUT4 Translocation", base: "Minimal", active: "High Density" },
-      { name: "Lumbar Spinal Compression", base: "High", active: "Relieved" },
-      { name: "Mitochondrial Biogenesis", base: "Low", active: "Upregulated" },
+      { nameKey: "indicators.glut4.name", baseKey: "indicators.glut4.base", activeKey: "indicators.glut4.active" },
+      { nameKey: "indicators.spinal.name", baseKey: "indicators.spinal.base", activeKey: "indicators.spinal.active" },
+      { nameKey: "indicators.mitochondria.name", baseKey: "indicators.mitochondria.base", activeKey: "indicators.mitochondria.active" },
     ],
     interventions: [
       {
         id: "mov_microburst",
-        name: "Hourly Micro-Burst Movement",
-        impact: "+22 Well-being | -20 Mismatch",
+        nameKey: "interventions.mov_microburst.name",
+        impactKey: "interventions.mov_microburst.impact",
         wellbeingPts: 22,
         mismatchPts: 20,
-        mechanism: "Triggers insulin-independent skeletal GLUT4 recruitment to clear plasma glucose.",
+        mechanismKey: "interventions.mov_microburst.mechanism",
       },
       {
         id: "mov_ground",
-        name: "Varied Posture & Floor Sitting",
-        impact: "+14 Well-being | -12 Mismatch",
+        nameKey: "interventions.mov_ground.name",
+        impactKey: "interventions.mov_ground.impact",
         wellbeingPts: 14,
         mismatchPts: 12,
-        mechanism: "Engages deep hip rotators & spinal stabilizer musculature, restoring pelvic motility.",
+        mechanismKey: "interventions.mov_ground.mechanism",
       },
       {
         id: "mov_zone2",
-        name: "Zone-2 Aerobic Locomotion",
-        impact: "+18 Well-being | -16 Mismatch",
+        nameKey: "interventions.mov_zone2.name",
+        impactKey: "interventions.mov_zone2.impact",
         wellbeingPts: 18,
         mismatchPts: 16,
-        mechanism: "Promotes mitochondrial density and enhances fatty-acid beta-oxidation capacity.",
+        mechanismKey: "interventions.mov_zone2.mechanism",
       },
     ],
   },
   light: {
     key: "light",
-    title: "Light & Circadian Biology",
-    subtitle: "Synchronizing central suprachiasmatic nucleus (SCN) clock with solar cycles.",
-    trait: "Circadian entrainment driven by high-lux solar morning & dark dusk.",
-    trigger: "Indoor low-lux days, artificial blue-rich LED exposure after sunset.",
+    titleKey: "domains.light.title",
+    subtitleKey: "domains.light.subtitle",
+    traitKey: "domains.light.trait",
+    triggerKey: "domains.light.trigger",
     indicators: [
-      { name: "Melatonin Suppression Peak", base: "Delayed", active: "Synchronized" },
-      { name: "Nightly Deep NREM Sleep %", base: "11% (Suboptimal)", active: "22% (Optimal)" },
-      { name: "Cortisol Awakening Response", base: "Blunted", active: "Robust" },
+      { nameKey: "indicators.melatonin.name", baseKey: "indicators.melatonin.base", activeKey: "indicators.melatonin.active" },
+      { nameKey: "indicators.nrem.name", baseKey: "indicators.nrem.base", activeKey: "indicators.nrem.active" },
+      { nameKey: "indicators.cortisol.name", baseKey: "indicators.cortisol.base", activeKey: "indicators.cortisol.active" },
     ],
     interventions: [
       {
         id: "light_sunlight",
-        name: "Morning Outdoor Sunlight (10m)",
-        impact: "+25 Well-being | -22 Mismatch",
+        nameKey: "interventions.light_sunlight.name",
+        impactKey: "interventions.light_sunlight.impact",
         wellbeingPts: 25,
         mismatchPts: 22,
-        mechanism: "Activates ipRGC retinal cells to reset SCN master clock & trigger cortisol peak.",
+        mechanismKey: "interventions.light_sunlight.mechanism",
       },
       {
         id: "light_nightshift",
-        name: "Post-Sunset Warm Light Shift",
-        impact: "+20 Well-being | -18 Mismatch",
+        nameKey: "interventions.light_nightshift.name",
+        impactKey: "interventions.light_nightshift.impact",
         wellbeingPts: 20,
         mismatchPts: 18,
-        mechanism: "Eliminates 460nm blue spectrum to allow pineal gland uninhibited melatonin production.",
+        mechanismKey: "interventions.light_nightshift.mechanism",
       },
       {
         id: "light_thermal",
-        name: "Cool Room Sleep Dip (18°C/65°F)",
-        impact: "+15 Well-being | -12 Mismatch",
+        nameKey: "interventions.light_thermal.name",
+        impactKey: "interventions.light_thermal.impact",
         wellbeingPts: 15,
         mismatchPts: 12,
-        mechanism: "Facilitates requisite 1°C core body temperature drop for deep slow-wave sleep.",
+        mechanismKey: "interventions.light_thermal.mechanism",
       },
     ],
   },
   attention: {
     key: "attention",
-    title: "Attention & Social Connection",
-    subtitle: "Protecting cognitive focus and tribe-scale social interaction.",
-    trait: "Tuned for immediate physical environment & small tribal affinity (~150 people).",
-    trigger: "Hyper-stimulating algorithmic feeds, asynchronous notifications, social isolation.",
+    titleKey: "domains.attention.title",
+    subtitleKey: "domains.attention.subtitle",
+    traitKey: "domains.attention.trait",
+    triggerKey: "domains.attention.trigger",
     indicators: [
-      { name: "Prefrontal Cognitive Fatigue", base: "High", active: "Recovered" },
-      { name: "Tonic Dopamine Baseline", base: "Depleted", active: "Restored" },
-      { name: "Vagal Parasympathetic Tone", base: "Low", active: "Elevated" },
+      { nameKey: "indicators.prefrontal.name", baseKey: "indicators.prefrontal.base", activeKey: "indicators.prefrontal.active" },
+      { nameKey: "indicators.dopamine.name", baseKey: "indicators.dopamine.base", activeKey: "indicators.dopamine.active" },
+      { nameKey: "indicators.vagal.name", baseKey: "indicators.vagal.base", activeKey: "indicators.vagal.active" },
     ],
     interventions: [
       {
         id: "att_batching",
-        name: "Batch Notification Pulses",
-        impact: "+22 Well-being | -20 Mismatch",
+        nameKey: "interventions.att_batching.name",
+        impactKey: "interventions.att_batching.impact",
         wellbeingPts: 22,
         mismatchPts: 20,
-        mechanism: "Reduces sympathetic nervous system arousal and interrupts tonic dopamine depletion.",
+        mechanismKey: "interventions.att_batching.mechanism",
       },
       {
         id: "att_focus",
-        name: "Monotropic Focus Blocks (45m)",
-        impact: "+18 Well-being | -16 Mismatch",
+        nameKey: "interventions.att_focus.name",
+        impactKey: "interventions.att_focus.impact",
         wellbeingPts: 18,
         mismatchPts: 16,
-        mechanism: "Eliminates attention residue from context switching, optimizing working memory.",
+        mechanismKey: "interventions.att_focus.mechanism",
       },
       {
         id: "att_social",
-        name: "Daily In-Person Micro-Affiliation",
-        impact: "+16 Well-being | -14 Mismatch",
+        nameKey: "interventions.att_social.name",
+        impactKey: "interventions.att_social.impact",
         wellbeingPts: 16,
         mismatchPts: 14,
-        mechanism: "Triggers endogenous oxytocin synthesis and lowers amygdalar threat detection.",
+        mechanismKey: "interventions.att_social.mechanism",
       },
     ],
   },
 };
 
 export default function Home() {
+  const { t } = useTranslation();
   const [selectedDomain, setSelectedDomain] = useState<DomainKey>("nutrition");
   const [activeInterventions, setActiveInterventions] = useState<string[]>([]);
 
@@ -231,15 +234,15 @@ export default function Home() {
 
   const tabItems = DOMAIN_KEYS.map((key) => ({
     key,
-    label: DOMAINS[key].title.split(" & ")[0],
+    labelKey: `dashboard.tabs.${key}`,
   }));
 
   return (
     <main className="dashboard-shell">
       <div className="widget-container">
         <DashboardHeader
-          title="Evolutionary Mismatch Explorer"
-          subtitle="Align modern digital and physical behavior with ancestral human biology."
+          title={t("dashboard.nav.title")}
+          subtitle={t("dashboard.nav.subtitle")}
         />
 
         <MetricDeck
@@ -257,27 +260,49 @@ export default function Home() {
 
         <div className="main-layout">
           <DomainPanel
-            title={domain.title}
-            subtitle={domain.subtitle}
-            trait={domain.trait}
-            trigger={domain.trigger}
-            interventions={domain.interventions}
+            title={t(domain.titleKey)}
+            subtitle={t(domain.subtitleKey)}
+            trait={t(domain.traitKey)}
+            trigger={t(domain.triggerKey)}
+            interventions={domain.interventions.map((i) => ({
+              id: i.id,
+              name: t(i.nameKey),
+              impact: t(i.impactKey),
+              mechanism: t(i.mechanismKey),
+            }))}
             activeInterventions={activeInterventions}
             onToggleIntervention={toggleIntervention}
           />
 
           <MechanismsPanel
-            indicators={domain.indicators}
-            interventions={domain.interventions}
+            indicators={domain.indicators.map((indicator) => ({
+              name: t(indicator.nameKey),
+              base: t(indicator.baseKey),
+              active: t(indicator.activeKey),
+            }))}
+            interventions={domain.interventions.map((i) => ({
+              id: i.id,
+              name: t(i.nameKey),
+              impact: t(i.impactKey),
+              wellbeingPts: i.wellbeingPts,
+              mismatchPts: i.mismatchPts,
+              mechanism: t(i.mechanismKey),
+            }))}
             activeInterventions={activeInterventions}
           />
         </div>
 
         <FooterSummary
-          summaryText={`${metrics.activeCount} interventions active across 4 domains. Mismatch score is ${metrics.mismatch}/100.`}
+          summaryKey="dashboard.summary.text"
+          summaryValues={{
+            count: metrics.activeCount,
+            domains: 4,
+            score: metrics.mismatch,
+          }}
           onReset={() => setActiveInterventions([])}
         />
       </div>
+      <LocaleSwitcher />
     </main>
   );
 }

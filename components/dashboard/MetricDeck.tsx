@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import { MetricCard } from "./MetricCard";
 
 type MetricDeckProps = {
@@ -8,25 +9,26 @@ type MetricDeckProps = {
 };
 
 export function MetricDeck({ mismatch, wellbeing, activeCount, totalCount }: MetricDeckProps) {
+  const { t } = useTranslation();
   const mismatchDelta = 85 - mismatch;
   const wellbeingDelta = wellbeing - 35;
   const mitigationPercent = totalCount === 0 ? 0 : (activeCount / totalCount) * 100;
 
-  let riskText = "High Mismatch";
+  let riskText = t("metricDeck.status.highMismatch");
   let riskTone: "danger" | "green" | "blue" = "danger";
 
   if (mismatch <= 25) {
-    riskText = "Aligned";
+    riskText = t("metricDeck.status.aligned");
     riskTone = "green";
   } else if (mismatch <= 55) {
-    riskText = "Moderate";
+    riskText = t("metricDeck.status.moderate");
     riskTone = "blue";
   }
 
   return (
     <div className="metrics-grid">
       <MetricCard
-        label="Mismatch Index"
+        label={t("metricDeck.label.mismatch")}
         value={`${mismatch}/100`}
         delta={mismatchDelta > 0 ? `-${mismatchDelta} pts` : "0 pts"}
         progress={mismatch}
@@ -34,7 +36,7 @@ export function MetricDeck({ mismatch, wellbeing, activeCount, totalCount }: Met
       />
 
       <MetricCard
-        label="Well-Being Score"
+        label={t("metricDeck.label.wellbeing")}
         value={`${wellbeing}/100`}
         delta={`+${wellbeingDelta} pts`}
         progress={wellbeing}
@@ -42,7 +44,7 @@ export function MetricDeck({ mismatch, wellbeing, activeCount, totalCount }: Met
       />
 
       <MetricCard
-        label="Active Mitigations"
+        label={t("metricDeck.label.mitigation")}
         value={`${activeCount} / ${totalCount}`}
         delta=""
         progress={mitigationPercent}
