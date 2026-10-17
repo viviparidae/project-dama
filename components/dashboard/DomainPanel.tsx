@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import { InterventionItem } from "./InterventionItem";
 
 type Intervention = {
@@ -26,6 +27,7 @@ export function DomainPanel({
   activeInterventions,
   onToggleIntervention,
 }: DomainPanelProps) {
+  const { t } = useTranslation();
   return (
     <section className="panel-card">
       <div className="panel-header">
@@ -34,13 +36,13 @@ export function DomainPanel({
       </div>
 
       <div className="mismatch-context-box">
-        <strong>Ancestral Trait:</strong> {trait}
+        <strong>{t("panel.ancestralTrait")}</strong> {trait}
         <br />
-        <strong>Modern Trigger:</strong> {trigger}
+        <strong>{t("panel.modernTrigger")}</strong> {trigger}
       </div>
 
       <div className="panel-header panel-header-tight">
-        <span className="panel-title panel-title-grid">Targeted Interventions</span>
+        <span className="panel-title panel-title-grid">{t("panel.targetedInterventions")}</span>
       </div>
 
       <div className="interventions-list">

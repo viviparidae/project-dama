@@ -22,7 +22,9 @@
     "test:ci:commit": "vitest run tests/unit --reporter=verbose",
     "test:ci:pr": "vitest run tests/unit tests/acceptance tests/integration --reporter=verbose",
     "test:ci:deploy": "playwright test tests/e2e",
-    "check:i18n": "node scripts/check-translation-coverage.js"
+    "check:i18n": "node scripts/check-translation-coverage.js",
+    "test:i18n": "vitest run tests/unit/i18n",
+    "test:components": "vitest run tests/unit/components"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2",

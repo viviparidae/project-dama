@@ -6,9 +6,13 @@ export default defineConfig({
     // テストルートの設定
     include: [
       "tests/unit/**/*.test.ts",
+      "tests/unit/**/*.test.tsx",
       "tests/acceptance/**/*.test.ts",
       "tests/integration/**/*.test.ts",
     ],
+
+    // セットアップファイル
+    setupFiles: ["tests/setup/i18n.ts"],
 
     // グローバル設定（describe / it / expect をインポート不要にする）
     globals: false, // 明示的インポートで型安全性を維持

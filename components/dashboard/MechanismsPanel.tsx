@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 type Intervention = {
   id: string;
   name: string;
@@ -15,14 +16,15 @@ type MechanismsPanelProps = {
 };
 
 export function MechanismsPanel({ indicators, interventions, activeInterventions }: MechanismsPanelProps) {
+  const { t } = useTranslation();
   const domainMechanisms = interventions.filter((intervention) => activeInterventions.includes(intervention.id));
   const domainActiveCount = domainMechanisms.length;
 
   return (
     <aside className="panel-card">
       <div className="panel-header">
-        <h3 className="panel-title">Biological Mechanisms</h3>
-        <p className="panel-subtitle">Physiological adaptations triggered by active habits.</p>
+        <h3 className="panel-title">{t("mechanismsPanel.title")}</h3>
+        <p className="panel-subtitle">{t("mechanismsPanel.subtitle")}</p>
       </div>
 
       <div className="mechanisms-list">
@@ -34,12 +36,12 @@ export function MechanismsPanel({ indicators, interventions, activeInterventions
             </div>
           ))
         ) : (
-          <div className="empty-mechanisms">Toggle interventions above to reveal biological pathways.</div>
+          <div className="empty-mechanisms">{t("mechanismsPanel.empty")}</div>
         )}
       </div>
 
       <div className="panel-header panel-header-tight">
-        <h3 className="panel-title">Domain Indicators</h3>
+        <h3 className="panel-title">{t("mechanismsPanel.domainIndicators")}</h3>
       </div>
 
       <div className="indicators-list">
