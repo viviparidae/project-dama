@@ -1,0 +1,223 @@
+{
+  "app": {
+    "title": "DAMA Dashboard",
+    "description": "マイクロムーブの設定を行う画面です。"
+  },
+  "localeSwitcher": {
+    "ja": "日本語",
+    "en": "English"
+  },
+  "domainTabs": {
+    "label": "Life domains"
+  },
+  "panel": {
+    "ancestralTrait": "祖先の特徴:",
+    "modernTrigger": "現代のトリガー:",
+    "targetedInterventions": "標的とする介入"
+  },
+  "metricDeck": {
+    "label": {
+      "mismatch": "不一致指数",
+      "wellbeing": "ウェルビーイングスコア",
+      "mitigation": "アクティブな軽減"
+    },
+    "status": {
+      "highMismatch": "不一致が高い",
+      "aligned": "整列済み",
+      "moderate": "中程度"
+    }
+  },
+  "mechanismsPanel": {
+    "title": "生物学的メカニズム",
+    "subtitle": "アクティブな習慣によって引き起こされる生理的適応。",
+    "empty": "上の介入を切り替えて生物学的経路を表示する。",
+    "domainIndicators": "ドメイン指標"
+  },
+  "footerSummary": {
+    "resetButton": "全状態をリセット"
+  },
+  "units": {
+    "points": "pts",
+    "percent": "%"
+  },
+  "dashboard": {
+    "nav": {
+      "title": "進化的不一致エクスプロージャ",
+      "subtitle": "デジタルとフィジカルな現代人間の行動を祖先人類生物学に適合させる。"
+    },
+    "tabs": {
+      "nutrition": "栄養",
+      "movement": "運動",
+      "light": "光",
+      "attention": "注意"
+    },
+    "summary": {
+      "text": "{count}つの介入が{domains}ドメインでアクティブです。不一致スコアは{score}/100です。"
+    }
+  },
+  "domains": {
+    "nutrition": {
+      "title": "栄養と代謝",
+      "subtitle": "栄養密度と食事タイミングを消化生理学に適合させる。",
+      "trait": "祖先のカロリー不足を生き抜くための砂糖と脂肪の先天的な好み。",
+      "trigger": "高濃度の食べ物、低食物繊維の超加工食の継続的な入手。"
+    },
+    "movement": {
+      "title": "運動と生物力学",
+      "subtitle": "身体的な多様性と持続的な低強度の歩行を再導入する。",
+      "trait": "休息中のエネルギー保存本能；1日8-12km歩くように進化している。",
+      "trigger": "チェアでの作業、静止した姿勢、機械による移動手段。"
+    },
+    "light": {
+      "title": "光と概時生理学",
+      "subtitle": "中枢概時核（SCN）を太陽周期と同期させる。",
+      "trait": "高明るさの太陽光（朝）と暗い夕方による概時節律。",
+      "trigger": "明るさの低い屋内、日没後の人工的なブルーライトLED照明。"
+    },
+    "attention": {
+      "title": "注意と社会的結びつき",
+      "subtitle": "認知集中と部族規模の社会的相互作用を保護する。",
+      "trait": "即座の物理環境と小規模の部族的親近感（約150人）にチューニングされている。",
+      "trigger": "過剰刺激的なアルゴリズムフィード、非同期通知、社会的孤立。"
+    }
+  },
+  "indicators": {
+    "postprandial": {
+      "name": "食後血糖値急上昇",
+      "base": "高い",
+      "active": "最適化済み"
+    },
+    "glpp": {
+      "name": "内生性GLP-1放出",
+      "base": "抑制されている",
+      "active": "刺激されている"
+    },
+    "autophagy": {
+      "name": "肝自己貪食作用",
+      "base": "阻害されている",
+      "active": "回復している"
+    },
+    "glut4": {
+      "name": "筋肉GLUT4転移",
+      "base": "最小限",
+      "active": "高密度"
+    },
+    "spinal": {
+      "name": "腰椎圧迫",
+      "base": "高い",
+      "active": "緩和されている"
+    },
+    "mitochondria": {
+      "name": "ミトコンドリア新生",
+      "base": "低い",
+      "active": "上昇している"
+    },
+    "melatonin": {
+      "name": "メラトニン抑制ピーク",
+      "base": "遅延している",
+      "active": "同期している"
+    },
+    "nrem": {
+      "name": "夜間深部NREM睡眠率",
+      "base": "11%（不十分）",
+      "active": "22%（最適）"
+    },
+    "cortisol": {
+      "name": "コルチゾール覚醒反応",
+      "base": "鈍い",
+      "active": "強い"
+    },
+    "prefrontal": {
+      "name": "前頭前葉認知疲労",
+      "base": "高い",
+      "active": "回復している"
+    },
+    "dopamine": {
+      "name": "トニックドーパミンベースライン",
+      "base": "枯渇している",
+      "active": "回復している"
+    },
+    "vagal": {
+      "name": "迷走神経副交感神経張力",
+      "base": "低い",
+      "active": "高い"
+    }
+  },
+  "interventions": {
+    "nutr_circadian": {
+      "name": "概日リズム断食（12-14時間）",
+      "impact": "+18 ウェルビーイング | -15 不一致",
+      "mechanism": "夜間期における肝時計遺伝子発現と内因性感受性を回復させる。"
+    },
+    "nutr_wholefood": {
+      "name": "全食物繊維優先ルール",
+      "impact": "+20 ウェルビーイング | -18 不一致",
+      "mechanism": "腸粘膜PYYおよびGLP-1ホルモン放出を刺激し視索飽和信号を送る。"
+    },
+    "nutr_hydration": {
+      "name": "事前水分補給プロトコル",
+      "impact": "+10 ウェルビーイング | -8 不一致",
+      "mechanism": "浸透調節性の喉の渇き信号を誤ってカロリー空腹と解釈することを防ぐ。"
+    },
+    "mov_microburst": {
+      "name": "毎時短時間運動バースト",
+      "impact": "+22 ウェルビーイング | -20 不一致",
+      "mechanism": "インスリン非依存性骨格筋GLUT4招集を引き起こし血漿ブドウ糖を除去する。"
+    },
+    "mov_ground": {
+      "name": "変化する姿勢と床座り",
+      "impact": "+14 ウェルビーイング | -12 不一致",
+      "mechanism": "深部外旋筋と脊柱安定化筋を動員し骨盤運動性を回復させる。"
+    },
+    "mov_zone2": {
+      "name": "ゾーン2有酸素運動",
+      "impact": "+18 ウェルビーイング | -16 不一致",
+      "mechanism": "ミトコンドリア密度を促進し脂肪酸β酸化能力を高める。"
+    },
+    "light_sunlight": {
+      "name": "午前中野外日光浴（10分）",
+      "impact": "+25 ウェルビーイング | -22 不一致",
+      "mechanism": "ipRGC網膜細胞を活性化しSCN主時計をリセットしコルチゾールピークを誘発する。"
+    },
+    "light_nightshift": {
+      "name": "日没後の暖色光への切り替え",
+      "impact": "+20 ウェルビーイング | -18 不一致",
+      "mechanism": "460nmブルースペクトルを排除し松果体のメラトニン産生を妨げない。"
+    },
+    "light_thermal": {
+      "name": "涼しい部屋での睡眠温度低下（18℃/65°F）",
+      "impact": "+15 ウェルビーイング | -12 不一致",
+      "mechanism": "深い遅波睡眠に必要な1℃の体温低下を促進する。"
+    },
+    "att_batching": {
+      "name": "通知パルスのバッチ処理",
+      "impact": "+22 ウェルビーイング | -20 不一致",
+      "mechanism": "交感神経系の興奮を減らしトニックドーパミン枯渇を中断する。"
+    },
+    "att_focus": {
+      "name": "単一集中ブロック（45分）",
+      "impact": "+18 ウェルビーイング | -16 不一致",
+      "mechanism": "コンテキストスイッチングによる注意残存を排除しワーキングメモリを最適化する。"
+    },
+    "att_social": {
+      "name": "毎日対面でのミニアフィリエーション",
+      "impact": "+16 ウェルビーイング | -14 不一致",
+      "mechanism": "内因性オキシトシン合成を引き起こし扁桃体の脅威検知を低下させる。"
+    }
+  },
+  "microMove": {
+    "eyebrow": "身体活動",
+    "title": "マイクロムーブ設定",
+    "description": "設定した間隔で軽運動を促す通知を受け取ります。",
+    "button": "マイクロムーブリマインド",
+    "intervalLabel": "通知間隔",
+    "interval20": "20分",
+    "interval30": "30分",
+    "interval45": "45分",
+    "enableLabel": "通知を有効にする",
+    "enableHint": "設定した間隔で通知を表示します。",
+    "save": "保存",
+    "saved": "設定を保存しました",
+    "notifyInterval": "{{interval}}分間隔で通知します"
+  }
+}

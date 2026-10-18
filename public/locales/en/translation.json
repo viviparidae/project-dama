@@ -1,0 +1,223 @@
+{
+  "app": {
+    "title": "Project Dama",
+    "description": "Set up your micro moves."
+  },
+  "localeSwitcher": {
+    "ja": "日本語",
+    "en": "English"
+  },
+  "domainTabs": {
+    "label": "Life domains"
+  },
+  "panel": {
+    "ancestralTrait": "Ancestral Trait:",
+    "modernTrigger": "Modern Trigger:",
+    "targetedInterventions": "Targeted Interventions"
+  },
+  "metricDeck": {
+    "label": {
+      "mismatch": "Mismatch Index",
+      "wellbeing": "Well-Being Score",
+      "mitigation": "Active Mitigations"
+    },
+    "status": {
+      "highMismatch": "High Mismatch",
+      "aligned": "Aligned",
+      "moderate": "Moderate"
+    }
+  },
+  "mechanismsPanel": {
+    "title": "Biological Mechanisms",
+    "subtitle": "Physiological adaptations triggered by active habits.",
+    "empty": "Toggle interventions above to reveal biological pathways.",
+    "domainIndicators": "Domain Indicators"
+  },
+  "footerSummary": {
+    "resetButton": "Reset All States"
+  },
+  "units": {
+    "points": "pts",
+    "percent": "%"
+  },
+  "dashboard": {
+    "nav": {
+      "title": "Evolutionary Mismatch Explorer",
+      "subtitle": "Align modern digital and physical behavior with ancestral human biology."
+    },
+    "tabs": {
+      "nutrition": "Nutrition",
+      "movement": "Movement",
+      "light": "Light",
+      "attention": "Attention"
+    },
+    "summary": {
+      "text": "{count} interventions active across {domains} domains. Mismatch score is {score}/100."
+    }
+  },
+  "domains": {
+    "nutrition": {
+      "title": "Nutrition & Metabolism",
+      "subtitle": "Aligning nutrient density and meal timing with digestive biology.",
+      "trait": "Innate preference for sugar and fats to survive ancestral calorie scarcity.",
+      "trigger": "Continuous access to hyper-palatable, low-fiber, ultra-processed food."
+    },
+    "movement": {
+      "title": "Movement & Biomechanics",
+      "subtitle": "Re-introducing physical variety and persistent low-intensity locomotion.",
+      "trait": "Energy conservation instinct during rest; built for walking 8-12km daily.",
+      "trigger": "Chaired desk work, static postures, and mechanized transportation."
+    },
+    "light": {
+      "title": "Light & Circadian Biology",
+      "subtitle": "Synchronizing central suprachiasmatic nucleus (SCN) clock with solar cycles.",
+      "trait": "Circadian entrainment driven by high-lux solar morning & dark dusk.",
+      "trigger": "Indoor low-lux days, artificial blue-rich LED exposure after sunset."
+    },
+    "attention": {
+      "title": "Attention & Social Connection",
+      "subtitle": "Protecting cognitive focus and tribe-scale social interaction.",
+      "trait": "Tuned for immediate physical environment & small tribal affinity (~150 people).",
+      "trigger": "Hyper-stimulating algorithmic feeds, asynchronous notifications, social isolation."
+    }
+  },
+  "indicators": {
+    "postprandial": {
+      "name": "Postprandial Glycemic Spikes",
+      "base": "Elevated",
+      "active": "Optimized"
+    },
+    "glpp": {
+      "name": "Endogenous GLP-1 Release",
+      "base": "Suppressed",
+      "active": "Stimulated"
+    },
+    "autophagy": {
+      "name": "Hepatic Autophagy",
+      "base": "Inhibited",
+      "active": "Restored"
+    },
+    "glut4": {
+      "name": "Muscle GLUT4 Translocation",
+      "base": "Minimal",
+      "active": "High Density"
+    },
+    "spinal": {
+      "name": "Lumbar Spinal Compression",
+      "base": "High",
+      "active": "Relieved"
+    },
+    "mitochondria": {
+      "name": "Mitochondrial Biogenesis",
+      "base": "Low",
+      "active": "Upregulated"
+    },
+    "melatonin": {
+      "name": "Melatonin Suppression Peak",
+      "base": "Delayed",
+      "active": "Synchronized"
+    },
+    "nrem": {
+      "name": "Nightly Deep NREM Sleep %",
+      "base": "11% (Suboptimal)",
+      "active": "22% (Optimal)"
+    },
+    "cortisol": {
+      "name": "Cortisol Awakening Response",
+      "base": "Blunted",
+      "active": "Robust"
+    },
+    "prefrontal": {
+      "name": "Prefrontal Cognitive Fatigue",
+      "base": "High",
+      "active": "Recovered"
+    },
+    "dopamine": {
+      "name": "Tonic Dopamine Baseline",
+      "base": "Depleted",
+      "active": "Restored"
+    },
+    "vagal": {
+      "name": "Vagal Parasympathetic Tone",
+      "base": "Low",
+      "active": "Elevated"
+    }
+  },
+  "interventions": {
+    "nutr_circadian": {
+      "name": "Circadian Fasting Window (12-14h)",
+      "impact": "+18 Well-being | -15 Mismatch",
+      "mechanism": "Restores hepatic clock gene expression & insular sensitivity during nocturnal phase."
+    },
+    "nutr_wholefood": {
+      "name": "Whole Food Fiber-First Rule",
+      "impact": "+20 Well-being | -18 Mismatch",
+      "mechanism": "Stimulates mucosal PYY & GLP-1 hormone release to signal hypothalamic satiety."
+    },
+    "nutr_hydration": {
+      "name": "Pre-Meal Hydration Protocol",
+      "impact": "+10 Well-being | -8 Mismatch",
+      "mechanism": "Prevents osmoregulatory thirst signals from being misinterpreted as caloric hunger."
+    },
+    "mov_microburst": {
+      "name": "Hourly Micro-Burst Movement",
+      "impact": "+22 Well-being | -20 Mismatch",
+      "mechanism": "Triggers insulin-independent skeletal GLUT4 recruitment to clear plasma glucose."
+    },
+    "mov_ground": {
+      "name": "Varied Posture & Floor Sitting",
+      "impact": "+14 Well-being | -12 Mismatch",
+      "mechanism": "Engages deep hip rotators & spinal stabilizer musculature, restoring pelvic motility."
+    },
+    "mov_zone2": {
+      "name": "Zone-2 Aerobic Locomotion",
+      "impact": "+18 Well-being | -16 Mismatch",
+      "mechanism": "Promotes mitochondrial density and enhances fatty-acid beta-oxidation capacity."
+    },
+    "light_sunlight": {
+      "name": "Morning Outdoor Sunlight (10m)",
+      "impact": "+25 Well-being | -22 Mismatch",
+      "mechanism": "Activates ipRGC retinal cells to reset SCN master clock & trigger cortisol peak."
+    },
+    "light_nightshift": {
+      "name": "Post-Sunset Warm Light Shift",
+      "impact": "+20 Well-being | -18 Mismatch",
+      "mechanism": "Eliminates 460nm blue spectrum to allow pineal gland uninhibited melatonin production."
+    },
+    "light_thermal": {
+      "name": "Cool Room Sleep Dip (18°C/65°F)",
+      "impact": "+15 Well-being | -12 Mismatch",
+      "mechanism": "Facilitates requisite 1°C core body temperature drop for deep slow-wave sleep."
+    },
+    "att_batching": {
+      "name": "Batch Notification Pulses",
+      "impact": "+22 Well-being | -20 Mismatch",
+      "mechanism": "Reduces sympathetic nervous system arousal and interrupts tonic dopamine depletion."
+    },
+    "att_focus": {
+      "name": "Monotropic Focus Blocks (45m)",
+      "impact": "+18 Well-being | -16 Mismatch",
+      "mechanism": "Eliminates attention residue from context switching, optimizing working memory."
+    },
+    "att_social": {
+      "name": "Daily In-Person Micro-Affiliation",
+      "impact": "+16 Well-being | -14 Mismatch",
+      "mechanism": "Triggers endogenous oxytocin synthesis and lowers amygdalar threat detection."
+    }
+  },
+  "microMove": {
+    "eyebrow": "Physical Activity",
+    "title": "Micro Move Settings",
+    "description": "Receive reminders to prompt light movement at the configured interval.",
+    "button": "Micro Move Reminder",
+    "intervalLabel": "Notification interval",
+    "interval20": "20 min",
+    "interval30": "30 min",
+    "interval45": "45 min",
+    "enableLabel": "Enable notifications",
+    "enableHint": "Notifications will be shown at the configured interval.",
+    "save": "Save",
+    "saved": "Settings saved",
+    "notifyInterval": "Notify every {{interval}} minutes"
+  }
+}

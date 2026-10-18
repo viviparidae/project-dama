@@ -52,5 +52,20 @@
     "att_batching": { "name": "Batch Notification Pulses", "impact": "+22 Well-being | -20 Mismatch", "mechanism": "Reduces sympathetic nervous system arousal and interrupts tonic dopamine depletion." },
     "att_focus": { "name": "Monotropic Focus Blocks (45m)", "impact": "+18 Well-being | -16 Mismatch", "mechanism": "Eliminates attention residue from context switching, optimizing working memory." },
     "att_social": { "name": "Daily In-Person Micro-Affiliation", "impact": "+16 Well-being | -14 Mismatch", "mechanism": "Triggers endogenous oxytocin synthesis and lowers amygdalar threat detection." }
+  },
+  "microMove": {
+    "eyebrow": "Physical Activity",
+    "title": "Micro Move Settings",
+    "description": "Receive reminders to prompt light movement at the configured interval.",
+    "button": "Micro Move Reminder",
+    "intervalLabel": "Notification interval",
+    "interval20": "20 min",
+    "interval30": "30 min",
+    "interval45": "45 min",
+    "enableLabel": "Enable notifications",
+    "enableHint": "Notifications will be shown at the configured interval.",
+    "save": "Save",
+    "saved": "Settings saved",
+    "notifyInterval": "Notify every {{interval}} minutes"
   }
 }
