@@ -415,6 +415,162 @@ button {
   color: var(--on-surface);
 }
 
+/* ---------------------------------------------------------------------------
+ * マイクロムーブ設定（AC-MOVE-01）
+ * --------------------------------------------------------------------------- */
+.micro-move-card {
+  border: 1px solid var(--stroke-default);
+  border-radius: 18px;
+  background: var(--surface-bright);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+.micro-move-header {
+  padding: 18px 20px 10px;
+}
+
+.micro-move-header h2 {
+  margin: 0;
+  font-size: 1.15rem;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.micro-move-description {
+  margin: 8px 0 0;
+  color: var(--on-surface-variant);
+  font-size: 0.82rem;
+  line-height: 1.6;
+}
+
+.eyebrow {
+  margin: 0 0 6px;
+  color: var(--primary);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.menu-button {
+  width: calc(100% - 40px);
+  margin: 8px 20px 20px;
+  padding: 14px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: var(--surface-bright);
+  background: var(--primary);
+  border: 0;
+  border-radius: 14px;
+  font-weight: 700;
+  font-size: 0.92rem;
+}
+
+.menu-button span {
+  font-size: 1.25rem;
+  line-height: 1;
+}
+
+.settings-panel {
+  padding: 0 20px 20px;
+  animation: fade-in 0.18s ease-out;
+}
+
+.settings-panel fieldset {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.settings-panel legend {
+  margin-bottom: 10px;
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+.interval-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.interval-button {
+  padding: 12px 10px;
+  color: var(--on-surface);
+  background: var(--surface);
+  border: 2px solid var(--stroke-default);
+  border-radius: 12px;
+  font-weight: 700;
+}
+
+.interval-button.selected {
+  color: var(--primary);
+  background: var(--accent-container);
+  border-color: var(--primary);
+}
+
+.toggle-row {
+  margin-top: 20px;
+  padding: 14px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  background: var(--surface-container);
+  border-radius: 14px;
+}
+
+.toggle-row span {
+  display: grid;
+  gap: 3px;
+}
+
+.toggle-row strong {
+  font-weight: 600;
+  font-size: 0.88rem;
+}
+
+.toggle-row small {
+  color: var(--on-surface-variant);
+  font-size: 0.75rem;
+}
+
+.toggle-row input {
+  width: 22px;
+  height: 22px;
+  accent-color: var(--primary);
+}
+
+.save-button {
+  width: 100%;
+  margin-top: 18px;
+  padding: 13px 20px;
+  color: var(--surface-bright);
+  background: var(--on-surface);
+  border: 0;
+  border-radius: 12px;
+  font-weight: 700;
+}
+
+.success-message {
+  margin-top: 16px;
+  padding: 14px 16px;
+  display: grid;
+  gap: 3px;
+  color: var(--positive);
+  background: #eaf8ef;
+  border-radius: 12px;
+}
+
+.success-message strong {
+  font-weight: 700;
+}
+
+.success-message span {
+  font-size: 0.8rem;
+}
+
 @keyframes fade-in {
   from {
     opacity: 0;

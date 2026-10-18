@@ -51,5 +51,9 @@ export default defineConfig({
       "@infrastructure": path.resolve(__dirname, "./src/infrastructure"),
     },
   },
+
+  esbuild: {
+    jsx: "automatic",
+  },
 });
 

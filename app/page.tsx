@@ -2,12 +2,14 @@
 
 import { useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
+import "./i18n";
 import { DashboardHeader } from "../components/dashboard/DashboardHeader";
 import { DomainPanel } from "../components/dashboard/DomainPanel";
 import { DomainTabs } from "../components/dashboard/DomainTabs";
 import { FooterSummary } from "../components/dashboard/FooterSummary";
 import { MechanismsPanel } from "../components/dashboard/MechanismsPanel";
 import { MetricDeck } from "../components/dashboard/MetricDeck";
+import { MicroMoveSettings } from "../components/dashboard/MicroMoveSettings";
 import { LocaleSwitcher } from "../components/localeSwitcher";
 
 const DOMAIN_KEYS = ["nutrition", "movement", "light", "attention"] as const;
@@ -301,6 +303,8 @@ export default function Home() {
           }}
           onReset={() => setActiveInterventions([])}
         />
+
+        <MicroMoveSettings />
       </div>
       <LocaleSwitcher />
     </main>
